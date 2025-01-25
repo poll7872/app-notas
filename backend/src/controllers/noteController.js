@@ -166,7 +166,7 @@ export const archiveNote = async (req, res) => {
   const { state } = req.body;
 
   try {
-    const rowUpdated = await Note.update(
+    const [rowUpdated] = await Note.update(
       { state: state },
       { where: { id: noteId } },
     );
@@ -205,7 +205,7 @@ export const deleteNote = async (req, res) => {
     if (!note) {
       return res
         .status(404)
-        .json({ message: "Note with ID: ${noteId} not found" });
+        .json({ message: `Note with ID: ${noteId} not found` });
     }
 
     //ELiminar las asociaciones de la tabla note con note_categories
