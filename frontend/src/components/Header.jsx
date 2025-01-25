@@ -1,15 +1,20 @@
 import { Link, useLocation } from "react-router-dom";
-import { AddCircleFilled } from "@fluentui/react-icons";
+import { AddCircleFilled, BookmarkFilled } from "@fluentui/react-icons";
 import { useState } from "react";
 import { Modal } from "./Modal";
 import { FormAddNote } from "./FormAddNote";
+import { Categories } from "./Categories";
 
 export function Header({ title }) {
   const location = useLocation();
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isAddNoteModalOpen, setAddNoteModalOpen] = useState(false);
+  const [isCategorModalOpen, setCategorModalOpen] = useState(false);
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  const openAddNoteModal = () => setAddNoteModalOpen(true);
+  const closeAddNoteModal = () => setAddNoteModalOpen(false);
+
+  const openCategorModal = () => setCategorModalOpen(true);
+  const closeCategorModal = () => setCategorModalOpen(false);
 
   return (
     <header className="w-8/12 my-8 mx-auto">
@@ -18,6 +23,16 @@ export function Header({ title }) {
         <nav>
           <ul className="flex justify-center items-center gap-6 mt-3">
             <li>
+              <button
+                className="bg-purple-800 rounded-lg p-2 text-white flex items-center gap-2 font-semibold"
+                to="/"
+                onClick={openAddNoteModal}
+              >
+                Crear Nota
+                <AddCircleFilled className="text-2xl" />
+              </button>
+            </li>
+            <li>
               <Link
                 className="hover:underline decoration-wavy decoration-white font-semibold"
                 to={location.pathname === "/" ? "/notas-archivadas" : "/"}
@@ -25,31 +40,36 @@ export function Header({ title }) {
                 {location.pathname === "/" ? "Notas Archivadas" : "Mis Notas"}
               </Link>
             </li>
-            <li>Categorias</li>
           </ul>
         </nav>
       </div>
-      <div className="mt-3 flex justify-between">
+      <div className="mt-4 flex justify-between">
         <button
           className="bg-purple-800 rounded-lg p-2 text-white flex items-center gap-2 font-semibold"
           to="/"
-          onClick={openModal}
+          onClick={openCategorModal}
         >
-          Crear Nota
-          <AddCircleFilled className="text-2xl" />
+          Categorias
+          <BookmarkFilled className="text-2xl" />
         </button>
         <div>
           <label className="text-white font-bold" htmlFor="categories">
             Filtrar por categorias:
           </label>
-          <select className="bg-white rounded-lg p-2 w-40 ml-3 mr-2">
+          <select
+            id="categories"
+            className="bg-white rounded-lg p-2 w-40 ml-3 mr-2"
+          >
             <option>Personal</option>
           </select>
         </div>
       </div>
-      {/* MODAL */}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      {/* MODALS */}
+      <Modal isOpen={isAddNoteModalOpen} onClose={closeAddNoteModal}>
         <FormAddNote />
+      </Modal>
+      <Modal isOpen={isCategorModalOpen} onClose={closeCategorModal}>
+        <Categories />
       </Modal>
     </header>
   );
