@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { createNote, getCategories } from "../services/api";
 import { DismissCircleFilled } from "@fluentui/react-icons";
 import { useNotes } from "../context/NotesContext";
+import { useCategories } from "../context/CategoriesContext";
 
 export function FormAddNote() {
   const { addNote } = useNotes();
-  const [categories, setCategories] = useState([]);
+  const { categories } = useCategories();
   const [note, setNote] = useState({
     title: "",
     content: "",
@@ -13,19 +14,6 @@ export function FormAddNote() {
     categoryIds: [],
   });
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await getCategories();
-        setCategories(data);
-      } catch (error) {
-        console.log("Error al obtener las notas: ", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
