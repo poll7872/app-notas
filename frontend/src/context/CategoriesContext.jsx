@@ -23,8 +23,29 @@ export const CategoriesProvider = ({ children }) => {
     setCategories((prevCategories) => [...prevCategories, newCategory]);
   };
 
+  const updateCatInContext = (updatedCategory) => {
+    setCategories((prevCategories) =>
+      prevCategories.map((category) =>
+        category.id === updatedCategory.id ? updatedCategory : category,
+      ),
+    );
+  };
+
+  const deleteCatInContext = (id) => {
+    setCategories((prevCategories) =>
+      prevCategories.filter((category) => category.id !== id),
+    );
+  };
+
   return (
-    <CategoriesContext.Provider value={{ categories, addCategory }}>
+    <CategoriesContext.Provider
+      value={{
+        categories,
+        addCategory,
+        updateCatInContext,
+        deleteCatInContext,
+      }}
+    >
       {children}
     </CategoriesContext.Provider>
   );
