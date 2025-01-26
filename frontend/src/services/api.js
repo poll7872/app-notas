@@ -62,6 +62,7 @@ export const deleteNote = async (id) => {
   }
 };
 
+//Llamado a rutas /categories
 export const getCategories = async () => {
   try {
     const response = await apiClient.get("/categories/getCategories");
@@ -80,7 +81,30 @@ export const createCategory = async (category) => {
     );
     return response.data.category;
   } catch (error) {
-    console.error("Error created category");
+    console.error("Error created category: ", error);
+    throw error;
+  }
+};
+
+export const updatedCategory = async (id, category) => {
+  try {
+    const response = await apiClient.put(
+      `/categories/updateCategory/${id}`,
+      category,
+    );
+    return response.data.updatedCategory;
+  } catch (error) {
+    console.error("Error updated category: ", error);
+    throw error;
+  }
+};
+
+export const deleteCategory = async (id) => {
+  try {
+    const response = await apiClient.delete(`/categories/deleteCategory/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleted category: ", error);
     throw error;
   }
 };

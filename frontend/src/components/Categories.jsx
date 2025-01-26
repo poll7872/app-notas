@@ -3,16 +3,24 @@ import {
   BookmarkFilled,
   DeleteFilled,
   NoteEditFilled,
+  SaveEditFilled,
 } from "@fluentui/react-icons";
 import { useCategories } from "../context/CategoriesContext";
-import { createCategory } from "../services/api";
+import {
+  createCategory,
+  deleteCategory,
+  updatedCategory,
+} from "../services/api";
 import { useState } from "react";
 
 export function Categories() {
-  const { categories, addCategory } = useCategories();
+  const { categories, addCategory, updateCatInContext, deleteCatInContext } =
+    useCategories();
   const [category, setCategory] = useState({
     name: "",
   });
+  const [editingCategoryId, setEditingCategoryId] = useState(null);
+  const [editedName, setEditedName] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +41,33 @@ export function Categories() {
       ...category,
       [name]: value,
     });
+  };
+
+  const handleEditClick = (categoryId, currentName) => {
+    setEditingCategoryId(categoryId);
+    setEditedName(currentName);
+  };
+
+  const handleSaveClick = async (categoryId) => {
+    try {
+      const updatedCategoryData = await updatedCategory(categoryId, {
+        name: editedName,
+      });
+
+      updateCatInContext(updatedCategoryData);
+      setEditingCategoryId(null);
+    } catch (error) {
+      console.error("Error al actualizar la categoria: ", error);
+    }
+  };
+
+  const handleDeleteCat = async (categoryId) => {
+    try {
+      await deleteCategory(categoryId);
+      deleteCatInContext(categoryId);
+    } catch (error) {
+      console.error("Error al eliminar la categoria: ", error);
+    }
   };
 
   return (
@@ -72,13 +107,29 @@ export function Categories() {
                   className="text-purple-800 text-3xl"
                   aria-hidden="true"
                 />
-                <h2 className="font-bold">{category.name}</h2>
+                {editingCategoryId === category.id ? (
+                  <input
+                    type="text"
+                    value={editedName}
+                    onChange={(e) => setEditedName(e.target.value)}
+                  />
+                ) : (
+                  <h2 className="font-bold">{category.name}</h2>
+                )}
               </div>
               <div className="flex items-center gap-1">
-                <button>
-                  <NoteEditFilled className="text-2xl text-blue-800 cursor-pointer" />
-                </button>
-                <button>
+                {editingCategoryId === category.id ? (
+                  <button onClick={() => handleSaveClick(category.id)}>
+                    <SaveEditFilled className="text-2xl text-green-500 cursor-pointer" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleEditClick(category.id, category.name)}
+                  >
+                    <NoteEditFilled className="text-2xl text-blue-800 cursor-pointer" />
+                  </button>
+                )}
+                <button onClick={() => handleDeleteCat(category.id)}>
                   <DeleteFilled className="text-2xl text-red-600 cursor-pointer" />
                 </button>
               </div>
