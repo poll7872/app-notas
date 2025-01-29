@@ -38,15 +38,15 @@ export function CardNote({ note }) {
 
   return (
     <>
-      <article className="bg-white w-80 rounded-lg p-1 hover:border border-purple-800 hover:shadow-2xl hover:shadow-purple-900/50">
+      <article className="bg-white sm:80 w-auto rounded-lg p-1 hover:border border-purple-800 hover:shadow-2xl hover:shadow-purple-900/50">
         <div className="flex items-center">
           <NoteFilled
             onClick={openNoteModal}
-            className="text-7xl cursor-pointer text-purple-600"
+            className="text-5xl sm:text-7xl cursor-pointer text-purple-600"
           />
           <div className="font-bold">
             <h2 className="text-base">{note.title}</h2>
-            <p className="text-sm">
+            <p className="text-xs">
               Ultima modificación:
               {format(note.updatedAt, "dd/MMM/yy", { locale: es })}
             </p>
