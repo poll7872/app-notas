@@ -37,13 +37,13 @@
 ![Notas archivadas](https://i.ibb.co/vxf7S0qB/Shot-2025-01-31-152627.png)
 
 ### Editar nota
-![Editar nota](https://i.ibb.co/fzqcchL7/Shot-2025-01-31-155636.png)
+![Editar nota](https://i.ibb.co/67v2Nn8Z/Shot-2025-01-31-152932.png)
 
 ### Eliminar nota
-![Eliminar nota](https://i.ibb.co/YFTpTsBJ/Shot-2025-01-31-155809.png)
+![Eliminar nota](https://i.ibb.co/Xr4341xr/Shot-2025-01-31-153024.png)
 
 ### Visualización de la nota
-![Visualización de la nota](https://i.ibb.co/ksBDK551/image.png)
+![Visualización de la nota](https://i.ibb.co/svw6YVf7/Shot-2025-01-31-153206.png)
 
 ### Filtrar Notas por categoría
 ![Filtrar Notas por categoría](https://i.ibb.co/1JZ14Q0p/Shot-2025-01-31-153455.png)
@@ -53,11 +53,6 @@
 
 ### Notas archivadas
 ![Notas archivadas](https://i.ibb.co/wFCwQ1M1/Shot-2025-01-31-153534.png)
-
-### Diseño Responsive
-![Diseño responsive](https://i.ibb.co/gbxN99Bn/image.png)
-
-![Diseño responsive 2](https://i.ibb.co/bnr8pH7/image.png)
 ## Instalación y configuración
 
 Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local.
@@ -70,18 +65,18 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local.
 
 ### Pasos para la instalación
 
-2. **Clona el repositorio:**
+1. **Clona el repositorio:**
 
    ```bash
    git clone https://github.com/poll7872/app-notas.git
    ```
 
-3. **Instala las dependencias:** Instala las dependencias en las carpetas backend y frontend con el comando.
+2. **Instala las dependencias:** Instala las dependencias en las carpetas backend y frontend con el comando.
 ```bash
 npm install
 ```
 
-4. **Configura las variables de entorno:** Agrega las variables de entorno de acuerdo a tu configuración local en el archivo  `.env`  en /backend
+3. **Configura las variables de entorno:** Agrega las variables de entorno de acuerdo a tu configuración local en el archivo  `.env`  en /backend
      
 ```env 
 PORT=5000
@@ -93,7 +88,7 @@ DB_HOST=TU_HOST_DB
 DB_DATABASE=app-notas
 ```
     
-5. **Inicia el servidor:** Para iniciar el servidor debes de aplicar el siguiente comando en las carpeta /backend y /frontend
+4. **Inicia el servidor:** Para iniciar el servidor debes de aplicar el siguiente comando en las carpeta /backend y /frontend
 ```bash
 npm run dev
 ```
