@@ -11,7 +11,7 @@ export function NotesArchived() {
   return (
     <>
       <Header title={"Notas Archivadas"} />
-      <main className="w-8/12 mx-auto grid grid-cols-3 gap-3">
+      <main className="w-full md:w-8/12 mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 md:p-0 p-4 gap-3">
         {archivedNotes.map((note) => (
           <CardNote key={note.id} note={note} />
         ))}
