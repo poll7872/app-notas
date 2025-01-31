@@ -10,7 +10,7 @@ import { Categories } from "./Categories";
 import { Menu } from "./Menu";
 import { CategoryFilter } from "./CategoryFilter";
 
-export function Header({ title }) {
+export function Header({ title, onCategoryChange }) {
   const location = useLocation();
   const [isAddNoteModalOpen, setAddNoteModalOpen] = useState(false);
   const [isCategorModalOpen, setCategorModalOpen] = useState(false);
@@ -70,7 +70,7 @@ export function Header({ title }) {
         </nav>
 
         <div className="flex md:justify-end mt-4 justify-center items-center gap-6">
-          <CategoryFilter />
+          <CategoryFilter onCategoryChange={onCategoryChange} />
         </div>
       </div>
 
