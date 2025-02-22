@@ -81,7 +81,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local.
 npm install
 ```
 
-4. **Configura las variables de entorno:** Agrega las variables de entorno de acuerdo a tu configuración local en el archivo  `.env`  en /backend
+4. **Configura las variables de entorno:** Crea un archivo `.env`  en /backend agrega y configura las variables de entorno de acuerdo a tu configuración local.
      
 ```env 
 PORT=5000
